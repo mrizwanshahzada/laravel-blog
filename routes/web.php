@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::prefix('admin')->group(function () {
+    Route::get('/home', function () {
+        return view('admin.layouts.app');
+    });
+});
+
+
 Route::get('/', function () {
     return view('user.blog');
 });
