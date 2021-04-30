@@ -21,6 +21,18 @@ Route::prefix('admin')->group(function () {
     Route::get('/home', function () {
         return view('admin.layouts.app');
     });
+
+    Route::get('/post', function () {
+        return view('admin.posts.post');
+    });
+
+    Route::get('/category', function () {
+        return view('admin.categories.category');
+    });
+
+    Route::get('/tag', function () {
+        return view('admin.tags.tag');
+    });
 });
 
 
