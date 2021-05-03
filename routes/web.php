@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\PostController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,33 +19,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/home', function () {
-        return view('admin.layouts.app');
-    });
+//Admin routes
 
-    Route::get('/post', function () {
-        return view('admin.posts.post');
-    });
+Route::group(['prefix' => 'admin',], function() {
 
-    Route::get('/category', function () {
-        return view('admin.categories.category');
-    });
+    Route::get('/home', [AdminHomeController::class,'index'])->name('admin.home');
 
-    Route::get('/tag', function () {
-        return view('admin.tags.tag');
-    });
+    // Post Route
+    Route::resource('post', AdminPostController::class);
+
+    // category route
+    Route::resource('category', CategoryController::class);
+
+    // tag route
+    Route::resource('tag', TagController::class);
+
+    //admin user route
+    Route::resource('user', UserController::class);
+
 });
 
+//User routes
 
-Route::get('/', function () {
-    return view('user.blog');
-});
+Route::get('/',[HomeController::class,'index']);
 
-Route::get('/post', function () {
-    return view('user.post');
-})->name('post');
+Route::get('/post', [PostController::class,'index'])->name('post');
