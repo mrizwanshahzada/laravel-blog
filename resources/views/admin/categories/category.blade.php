@@ -20,16 +20,18 @@
                 <div class="card-header">
                   <h3 class="card-title">Titles</h3>
                 </div>
-                <form>
+                <form method="POST" action="{{ route('category.store') }}">
+                    @csrf
+                    @include('user.layouts.partials.errors')
                   <div class="card-body row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Category Title</label>
-                            <input type="text" class="form-control" id="category-title" name="category-title" placeholder="Category Title">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Category Title">
                           </div>
                         <div class="form-group">
                             <label>Category Slug</label>
-                            <input type="text" class="form-control" id="category-slug" name="category-slug" placeholder="Category Slug">
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Category Slug">
                         </div>
                     </div>
                   </div>

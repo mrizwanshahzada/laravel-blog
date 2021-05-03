@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User\Category;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'slug'=>'required',
+        ]);
+
+        $category = new Category;
+
+        $category->name = $request->title;
+        $category->slug = $request->slug;
+        $category->save();
+
+        return redirect(route('category.index'));
     }
 
     /**

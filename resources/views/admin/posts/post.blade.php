@@ -57,11 +57,7 @@
                 </div>
                 <form method="POST" action="{{ route('post.store') }}">
                     @csrf
-                    @if(count($errors) > 0)
-                        @foreach ($errors->all() as $error)
-                            <p class="alert alert-danger">{{ $error }}</p>
-                        @endforeach
-                    @endif
+                    @include('user.layouts.partials.errors')
                   <div class="card-body row">
                     <div class="col-lg-6">
                         <div class="form-group">
