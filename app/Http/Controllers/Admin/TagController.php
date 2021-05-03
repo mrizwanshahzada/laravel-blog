@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User\Tag;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -35,7 +36,18 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'slug'=>'required',
+        ]);
+
+        $tag = new Tag;
+
+        $tag->name = $request->title;
+        $tag->slug = $request->slug;
+        $tag->save();
+
+        return redirect(route('tag.index'));
     }
 
     /**
