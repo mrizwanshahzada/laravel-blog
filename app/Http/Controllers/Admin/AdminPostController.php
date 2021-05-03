@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminPostController extends Controller
 {
@@ -35,7 +36,22 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'subtitle'=>'required',
+            'slug'=>'required',
+            'body'=>'required',
+        ]);
+
+        $post = new Post;
+
+        $post->title = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug = $request->slug;
+        $post->body = $request->body;
+        $post->save();
+
+        return redirect(route('post.index'));
     }
 
     /**

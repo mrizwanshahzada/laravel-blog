@@ -55,20 +55,26 @@
                 <div class="card-header">
                   <h3 class="card-title">Titles</h3>
                 </div>
-                <form>
+                <form method="POST" action="{{ route('post.store') }}">
+                    @csrf
+                    @if(count($errors) > 0)
+                        @foreach ($errors->all() as $error)
+                            <p class="alert alert-danger">{{ $error }}</p>
+                        @endforeach
+                    @endif
                   <div class="card-body row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Post Title</label>
-                            <input type="text" class="form-control" id="post-title" name="post-title" placeholder="Post Title">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Post Title">
                           </div>
                           <div class="form-group">
                               <label>Sub Title</label>
-                              <input type="text" class="form-control" id="post-subtitle" name="post-subtitle" placeholder="Sub Title">
+                              <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sub Title">
                             </div>
                             <div class="form-group">
                               <label>Slug</label>
-                              <input type="text" class="form-control" id="post-slug" name="post-slug" placeholder="Post Slug">
+                              <input type="text" class="form-control" id="slug" name="slug" placeholder="Post Slug">
                             </div>
                     </div>
                     <div class="col-lg-6">
@@ -96,7 +102,6 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                       <textarea id="summernote" name="body">
-                        Place <em>some</em> <u>text</u> <strong>here</strong>
                       </textarea>
                     </div>
                   </div>
