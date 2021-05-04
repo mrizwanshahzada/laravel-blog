@@ -103,7 +103,8 @@
                   </div>
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
+                    <a href="{{ route('post.index') }}" class="btn btn-warning">Back</a>
+                </div>
                 </form>
               </div>
         </div>

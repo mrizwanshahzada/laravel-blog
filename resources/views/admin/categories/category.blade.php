@@ -37,6 +37,7 @@
                   </div>
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>
                   </div>
                 </form>
               </div>
